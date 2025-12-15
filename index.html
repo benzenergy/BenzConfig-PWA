@@ -46,19 +46,65 @@
 
 <script>
 document.getElementById('btnAbout').addEventListener('click', function() {
-    const message = "BenzConfig iOS ver 1.0\n" +
-                    "Автор: Chekaev Vadim Andreevich\n" +
-                    "Исходный код: github.com/benzenergy\n" +
-                    "Лицензия: GNU GPL v3.0";
+    // Создаем полупрозрачный фон модального окна
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = 0;
+    modal.style.left = 0;
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.background = 'rgba(0,0,0,0.5)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = 1000;
 
-    alert(message);
+    // Контейнер с информацией
+    const container = document.createElement('div');
+    container.style.background = '#fff';
+    container.style.padding = '20px';
+    container.style.borderRadius = '10px';
+    container.style.textAlign = 'center';
+    container.style.maxWidth = '300px';
+    container.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+
+    // Иконка приложения
+    const img = document.createElement('img');
+    img.src = 'icons/icon-180.png'; // путь к иконке PWA
+    img.style.width = '60px';
+    img.style.height = '60px';
+    img.style.marginBottom = '12px';
+    container.appendChild(img);
+
+    // Текст
+    const text = document.createElement('p');
+    text.innerText = "BenzConfig Mobile ver 1.0\nАвтор: Chekaev Vadim Andreevich\nИсходный код: github.com/benzenergy\nЛицензия: GNU GPL v3.0";
+    text.style.whiteSpace = 'pre-line'; // переносы строк
+    text.style.fontSize = '14px';
+    container.appendChild(text);
+
+    // Кнопка закрытия
+    const closeBtn = document.createElement('button');
+    closeBtn.innerText = "OK";
+    closeBtn.style.marginTop = '12px';
+    closeBtn.style.padding = '6px 12px';
+    closeBtn.style.cursor = 'pointer';
+    closeBtn.addEventListener('click', function() {
+        document.body.removeChild(modal);
+    });
+    container.appendChild(closeBtn);
+
+    modal.appendChild(container);
+    document.body.appendChild(modal);
 });
 </script>
+
 
     
 <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
