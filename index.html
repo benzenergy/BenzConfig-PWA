@@ -43,8 +43,21 @@
 </div>
 
 <button id="btnAbout" class="about-button">О программе</button>
+
+<script>
+document.getElementById('btnAbout').addEventListener('click', function() {
+    const message = "BenzConfig Mobile ver 1.0\n" +
+                    "Автор: Chekaev Vadim Andreevich\n" +
+                    "Исходный код: github.com/benzenergy\n" +
+                    "Лицензия: GNU GPL v3.0";
+
+    alert(message);
+});
+</script>
+
     
 <script src="app.js"></script>
 </body>
 </html>
+
 
