@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>BenzConfig</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 16px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            font-size: 16px;
+        }
+        .block {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>BenzConfig</h2>
+
+<div class="block">
+    <h3>Летний</h3>
+    <input id="summerDistance" type="number" placeholder="Пробег, км">
+    <button onclick="calcSummer()">Рассчитать</button>
+    <div id="summerResult"></div>
+</div>
+
+<div class="block">
+    <h3>Зимний</h3>
+    <input id="winterDistance" type="number" placeholder="Пробег, км">
+    <button onclick="calcWinter()">Рассчитать</button>
+    <div id="winterResult"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
