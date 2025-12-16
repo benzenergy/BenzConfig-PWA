@@ -47,10 +47,12 @@
 <script>
     
 document.getElementById('btnAbout').addEventListener('click', function() {
-    
+
+    // Haptic (если поддерживается)
     if (navigator.vibrate) {
-    navigator.vibrate(10);
-        
+        navigator.vibrate(10);
+    }
+
     // Создаем полупрозрачный фон модального окна
     const modal = document.createElement('div');
     modal.style.position = 'fixed';
@@ -73,15 +75,15 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     container.style.maxWidth = '300px';
     container.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
 
-    // Иконка приложения
+    // Иконка
     const img = document.createElement('img');
-    img.src = 'icon-180.png'; // путь к иконке PWA
+    img.src = 'icon-180.png';
     img.style.width = '60px';
     img.style.height = '60px';
     img.style.marginBottom = '8px';
     container.appendChild(img);
-    
-    // Текст
+
+    // Основной текст
     const text = document.createElement('p');
     text.innerText =
         "BenzConfig Web App\n\n" +
@@ -89,37 +91,32 @@ document.getElementById('btnAbout').addEventListener('click', function() {
         "Материалы: www.flaticon.com\n" +
         "Исходный код: github.com/benzenergy\n" +
         "Автор: В.А. Чекаев";
-
     text.style.whiteSpace = 'pre-line';
     text.style.fontSize = '14px';
     text.style.lineHeight = '1.4';
     text.style.margin = '0';
     text.style.textAlign = 'center';
     container.appendChild(text);
-    
-    const subText = document.createElement('p');
-    subText.innerText =
-        "PWA-версия для iOS\n";
 
-    subText.style.whiteSpace = 'pre-line';
+    // Серый вторичный текст (iOS style)
+    const subText = document.createElement('p');
+    subText.innerText = "PWA-версия для iOS";
     subText.style.fontSize = '12px';
-    subText.style.color = '#8e8e93'; // системный серый iOS
+    subText.style.color = '#8e8e93';
     subText.style.marginTop = '12px';
     subText.style.textAlign = 'center';
     container.appendChild(subText);
 
-    
-    // Кнопка закрытия
+    // OK
     const closeBtn = document.createElement('button');
     closeBtn.innerText = "OK";
     closeBtn.style.marginTop = '12px';
     closeBtn.style.padding = '6px 12px';
-    closeBtn.style.cursor = 'pointer';
-    closeBtn.addEventListener('click', function() {
+    closeBtn.addEventListener('click', () => {
         document.body.removeChild(modal);
     });
-    container.appendChild(closeBtn);
 
+    container.appendChild(closeBtn);
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
@@ -129,6 +126,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
 <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
