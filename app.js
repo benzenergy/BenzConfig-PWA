@@ -16,18 +16,26 @@ function calculateFuel(distance, cityRate, roadRate, cityProp, roadProp) {
     };
 }
 
-function getProps() {
+// Получаем пропорции и нормы расхода
+function getProps(isWinter) {
     const cityProp = Number(document.getElementById("cityProp").value) || 30;
     const roadProp = Number(document.getElementById("roadProp").value) || 70;
-    const cityRate = Number(document.getElementById("cityRate").value) || 11.5;
-    const roadRate = Number(document.getElementById("roadRate").value) || 8.5;
+
+    let cityRate, roadRate;
+    if (isWinter) {
+        cityRate = Number(document.getElementById("cityRate").value) || 13.8;
+        roadRate = Number(document.getElementById("roadRate").value) || 10.2;
+    } else {
+        cityRate = Number(document.getElementById("cityRate").value) || 11.5;
+        roadRate = Number(document.getElementById("roadRate").value) || 8.5;
+    }
 
     return { cityProp, roadProp, cityRate, roadRate };
 }
 
 function calcSummer() {
     const distance = Number(document.getElementById("summerDistance").value);
-    const { cityProp, roadProp, cityRate, roadRate } = getProps();
+    const { cityProp, roadProp, cityRate, roadRate } = getProps(false);
     const res = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
     document.getElementById("summerResult").innerText =
@@ -45,7 +53,7 @@ function calcSummer() {
 
 function calcWinter() {
     const distance = Number(document.getElementById("winterDistance").value);
-    const { cityProp, roadProp, cityRate, roadRate } = getProps();
+    const { cityProp, roadProp, cityRate, roadRate } = getProps(true);
     const res = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
     document.getElementById("winterResult").innerText =
