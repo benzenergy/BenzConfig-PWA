@@ -98,3 +98,17 @@ button:active {
 .modal-close:active {
     opacity: 0.7;
 }
+
+.summer-title {
+    color: #FF6B00;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.winter-title {
+    color: #2196F3;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 16px;
+}
