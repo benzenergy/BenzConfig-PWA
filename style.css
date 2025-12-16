@@ -1,4 +1,4 @@
-/* Общие стили */
+/* Общие стили страницы */
 body {
     font-family: sans-serif;
     padding: 16px;
@@ -15,7 +15,7 @@ input, button {
     margin-top: 20px;
 }
 
-/* Кнопка "О программе" в стиле iOS */
+/* Кнопка "О программе" */
 .info-button {
     background: none;
     border: none;
@@ -31,7 +31,7 @@ input, button {
     opacity: 0.5;
 }
 
-/* Модальное окно */
+/* Модальное окно - фон */
 .modal-background {
     position: fixed;
     top: 0;
@@ -45,6 +45,7 @@ input, button {
     z-index: 1000;
 }
 
+/* Модальное окно - контейнер */
 .modal-container {
     background: #fff;
     padding: 20px;
@@ -54,12 +55,14 @@ input, button {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Иконка в модальном окне */
 .modal-icon {
     width: 60px;
     height: 60px;
     margin-bottom: 8px;
 }
 
+/* Основной текст модалки */
 .modal-text {
     white-space: pre-line;
     font-size: 14px;
@@ -68,15 +71,21 @@ input, button {
     text-align: center;
 }
 
+/* Вторичный серый текст модалки */
 .modal-subtext {
     font-size: 12px;
-    color: #8e8e93;
+    color: #8e8e93; /* системный серый iOS */
     margin-top: 12px;
     text-align: center;
 }
 
+/* Кнопка закрытия модалки */
 .modal-close {
     margin-top: 12px;
     padding: 6px 12px;
     cursor: pointer;
+    background-color: #007AFF;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
 }
