@@ -5,6 +5,8 @@
     <title>BenzConfig</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="icon-180.png">
+
+    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,45 +14,37 @@
 
 <h2>BenzConfig</h2>
 
-<!-- Летний расчет -->
 <div class="block">
-    <h3 style="color:#FF6B00;">Летний</h3>
+    <h3 class="summer-label">Летний</h3>
     <input id="summerDistance" type="number" placeholder="Пробег, км">
     <button onclick="calcSummer()">Рассчитать</button>
     <div id="summerResult"></div>
 </div>
 
-<!-- Зимний расчет -->
 <div class="block">
-    <h3 style="color:#2196F3;">Зимний</h3>
+    <h3 class="winter-label">Зимний</h3>
     <input id="winterDistance" type="number" placeholder="Пробег, км">
     <button onclick="calcWinter()">Рассчитать</button>
     <div id="winterResult"></div>
 </div>
 
-<!-- Нормы расхода Лето -->
 <div class="block">
-    <h3>Нормы расхода Лето (л/100 км)</h3>
-    <input id="cityRateSummer" type="number" placeholder="Город" value="11.5">
-    <input id="roadRateSummer" type="number" placeholder="Трасса" value="8.5">
+    <h3>Настройки пропорций (%)</h3>
+    <div style="display:flex; gap:8px;">
+        <input id="inputCityProp" type="number" placeholder="Город (30%)">
+        <input id="inputRoadProp" type="number" placeholder="Трасса (70%)">
+    </div>
 </div>
 
-<!-- Нормы расхода Зима -->
 <div class="block">
-    <h3>Нормы расхода Зима (л/100 км)</h3>
-    <input id="cityRateWinter" type="number" placeholder="Город" value="13.8">
-    <input id="roadRateWinter" type="number" placeholder="Трасса" value="10.2">
+    <h3>Нормы расхода (л/100 км)</h3>
+    <div style="display:flex; gap:8px;">
+        <input id="inputCityRate" type="number" placeholder="Город">
+        <input id="inputRoadRate" type="number" placeholder="Трасса">
+    </div>
 </div>
 
-<!-- Пропорции город/трасса -->
-<div class="block">
-    <h3>Пропорции (%)</h3>
-    <input id="cityProp" type="number" placeholder="Город (30%)" value="30">
-    <input id="roadProp" type="number" placeholder="Трасса (70%)" value="70">
-</div>
-
-<!-- Кнопка О программе -->
-<button id="btnAbout" class="info-button">О программе</button>
+<button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
 
 <script src="app.js"></script>
 <script>
@@ -64,4 +58,3 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
-
