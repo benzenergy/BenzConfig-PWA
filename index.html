@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="icon-180.png">
 
+    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,22 +15,20 @@
 <h2>BenzConfig</h2>
 
 <div class="block">
-    <h3>Летний</h3>
+    <h3 class="summer-title">Летний</h3>
     <input id="summerDistance" type="number" placeholder="Пробег, км">
     <button onclick="calcSummer()">Рассчитать</button>
     <div id="summerResult"></div>
 </div>
 
 <div class="block">
-    <h3>Зимний</h3>
+    <h3 class="winter-title">Зимний</h3>
     <input id="winterDistance" type="number" placeholder="Пробег, км">
     <button onclick="calcWinter()">Рассчитать</button>
     <div id="winterResult"></div>
 </div>
-    
-<div class="block">
-    <button id="btnAbout">О программе</button>
-</div>
+
+<button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
 
 <script src="app.js"></script>
 <script>
@@ -43,4 +42,3 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
-
