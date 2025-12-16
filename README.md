@@ -1,4 +1,4 @@
-BenzConfig PWA <br>
+### BenzConfig PWA
 
 Простой и удобный калькулятор расхода топлива <br> 
 для **летнего** и **зимнего** режимов, <br> 
@@ -17,5 +17,5 @@ Haptic feedback и блокировка ориентации экрана
 
 ### Лицензия
 **GNU GPL v3.0**  
-Автор: Chekaev Vadim Andreevich  
-Исходный код: [github.com/benzenergy/BenzConfig-PWA](https://github.com/benzenergy/BenzConfig-PWA)
+Автор: benzenergy
+Исходный код: [BenzConfig PWA](https://github.com/benzenergy/BenzConfig-PWA)
