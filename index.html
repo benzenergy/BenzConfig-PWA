@@ -8,21 +8,9 @@
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
-    <style>
-        body {
-            font-family: sans-serif;
-            padding: 16px;
-        }
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            font-size: 16px;
-        }
-        .block {
-            margin-top: 20px;
-        }
-    </style>
+
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -45,7 +33,6 @@
 <button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
     
 <script>
-    
 document.getElementById('btnAbout').addEventListener('click', function() {
 
     // Haptic (если поддерживается)
@@ -55,32 +42,16 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     
     // Создаем полупрозрачный фон модального окна
     const modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = 0;
-    modal.style.left = 0;
-    modal.style.width = '100%';
-    modal.style.height = '100%';
-    modal.style.background = 'rgba(0,0,0,0.5)';
-    modal.style.display = 'flex';
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.zIndex = 1000;
+    modal.className = 'modal-background';
 
     // Контейнер с информацией
     const container = document.createElement('div');
-    container.style.background = '#fff';
-    container.style.padding = '20px';
-    container.style.borderRadius = '10px';
-    container.style.textAlign = 'center';
-    container.style.maxWidth = '300px';
-    container.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+    container.className = 'modal-container';
 
     // Иконка
     const img = document.createElement('img');
     img.src = 'icon-180.png';
-    img.style.width = '60px';
-    img.style.height = '60px';
-    img.style.marginBottom = '8px';
+    img.className = 'modal-icon';
     container.appendChild(img);
 
     // Основной текст
@@ -91,36 +62,29 @@ document.getElementById('btnAbout').addEventListener('click', function() {
         "Материалы: www.flaticon.com\n" +
         "Исходный код: github.com/benzenergy\n" +
         "Автор: В.А. Чекаев";
-    text.style.whiteSpace = 'pre-line';
-    text.style.fontSize = '14px';
-    text.style.lineHeight = '1.4';
-    text.style.margin = '0';
-    text.style.textAlign = 'center';
+    text.className = 'modal-text';
     container.appendChild(text);
 
     // Серый вторичный текст
     const subText = document.createElement('p');
     subText.innerText = "PWA-версия для iOS";
-    subText.style.fontSize = '12px';
-    subText.style.color = '#8e8e93';
-    subText.style.marginTop = '12px';
-    subText.style.textAlign = 'center';
+    subText.className = 'modal-subtext';
     container.appendChild(subText);
 
     // OK
     const closeBtn = document.createElement('button');
     closeBtn.innerText = "OK";
-    closeBtn.style.marginTop = '12px';
-    closeBtn.style.padding = '6px 12px';
+    closeBtn.className = 'modal-close';
     closeBtn.addEventListener('click', () => {
         document.body.removeChild(modal);
     });
     container.appendChild(closeBtn);
+
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
-
 </script>
+
 <script src="app.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
@@ -133,24 +97,3 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
