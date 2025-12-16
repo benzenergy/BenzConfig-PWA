@@ -1,18 +1,17 @@
 <style>
-.about-button {
+.info-button {
     background: none;
     border: none;
-    color: #000;
-    font-size: 14px;
-    padding: 8px 12px;
+    font-size: 22px;
     cursor: pointer;
-    text-align: center;
+    padding: 6px;
+    margin: 16px auto 0 auto;
     display: block;
-    margin: 20px auto 0 auto; /* центрируем по горизонтали */
-    border-radius: 4px;
+    color: #007AFF; /* iOS blue */
 }
 
-.about-button:active {
-    opacity: 0.6; /* эффект нажатия */
+.info-button:active {
+    opacity: 0.5;
 }
+
 </style>
