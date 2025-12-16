@@ -4,7 +4,7 @@ BenzConfig PWA <br>
 для **летнего** и **зимнего** режимов, <br> 
 с детальной разбивкой по городу и трассе.  
 
-![Главный экран BenzConfig](assets/shot-main.png)
+![Главный экран BenzConfig](assets/shot-main.jpg)
 
 **Попробовать в браузере:** [Открыть PWA](https://benzenergy.github.io/BenzConfig-PWA/)  
 
