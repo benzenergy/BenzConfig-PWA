@@ -45,7 +45,12 @@
 <button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
     
 <script>
+    
 document.getElementById('btnAbout').addEventListener('click', function() {
+    
+    if (navigator.vibrate) {
+    navigator.vibrate(10);
+        
     // Создаем полупрозрачный фон модального окна
     const modal = document.createElement('div');
     modal.style.position = 'fixed';
@@ -118,11 +123,13 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
+    
 </script>
 
 <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
