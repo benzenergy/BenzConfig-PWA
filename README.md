@@ -15,6 +15,6 @@ Haptic feedback и блокировка ориентации экрана
 ---
 
 ### Лицензия
-GNU GPL v3.0 
-Автор: benzenergy
-Исходный код: [GitHub]([https://github.com/benzenergy/BenzConfig-PWA](https://github.com/benzenergy/BenzConfig-PWA/blob/main/index.html))
+GNU GPL v3.0  <br>
+Автор: benzenergy <br>
+Исходный код: [GitHub](https://github.com/benzenergy/BenzConfig-PWA/blob/main/index.html)
