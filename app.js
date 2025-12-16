@@ -1,73 +1,82 @@
-// Получение норм расхода и пропорций
-function getProps(isWinter) {
-    const cityProp = Number(document.getElementById("cityProp").value) || 30;
-    const roadProp = Number(document.getElementById("roadProp").value) || 70;
-
-    let cityRate, roadRate;
-    if (isWinter) {
-        cityRate = Number(document.getElementById("cityRateWinter").value) || 13.8;
-        roadRate = Number(document.getElementById("roadRateWinter").value) || 10.2;
-    } else {
-        cityRate = Number(document.getElementById("cityRateSummer").value) || 11.5;
-        roadRate = Number(document.getElementById("roadRateSummer").value) || 8.5;
-    }
-
-    return { cityProp, roadProp, cityRate, roadRate };
-}
-
-// Расчет топлива
-function calculateFuel(distance, cityRate, roadRate, cityProp, roadProp) {
-    const cityDistance = distance * cityProp / 100;
-    const roadDistance = distance * roadProp / 100;
+// Функции расчета топлива
+function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 0.7) {
+    const cityDistance = distance * cityProp;
+    const roadDistance = distance * roadProp;
 
     const cityFuel = cityDistance * cityRate / 100;
     const roadFuel = roadDistance * roadRate / 100;
+    const totalFuel = cityFuel + roadFuel;
 
-    return { totalFuel: cityFuel + roadFuel, cityDistance, roadDistance };
+    return { totalFuel, cityDistance, roadDistance, cityFuel, roadFuel };
 }
 
-// Кнопка Лето
+// Летний расчет
 function calcSummer() {
-    const distance = Number(document.getElementById("summerDistance").value) || 0;
-    const props = getProps(false);
-    const result = calculateFuel(distance, props.cityRate, props.roadRate, props.cityProp, props.roadProp);
+    const input = document.getElementById("summerDistance").value;
+    if (!input || isNaN(input)) {
+        document.getElementById("summerResult").innerText = "Введите значение пробега";
+        return;
+    }
+    const distance = Number(input);
+
+    const cityRate = Number(document.getElementById("inputCityRate")?.value) || 11.5;
+    const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 8.5;
+    const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3;
+    const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7;
+
+    const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
     document.getElementById("summerResult").innerText =
-        `Общий расход ${result.totalFuel.toFixed(2)} л\n\n` +
+        `Общий расход ${totalFuel.toFixed(2)} л\n\n` +
         `Детализация\n` +
-        `Пробег по городу ${result.cityDistance.toFixed(2)} км\n` +
-        `Пробег по трассе ${result.roadDistance.toFixed(2)} км\n\n` +
+        `Пробег по городу ${cityDistance.toFixed(2)} км\n` +
+        `Пробег по трассе ${roadDistance.toFixed(2)} км\n\n` +
         `Нормы расхода\n` +
-        `Город ${props.cityRate} л на 100 км\n` +
-        `Трасса ${props.roadRate} л на 100 км\n\n` +
+        `Город ${cityRate} л на 100 км\n` +
+        `Трасса ${roadRate} л на 100 км\n\n` +
         `Пропорции\n` +
-        `Городской режим: ${props.cityProp}%\n` +
-        `Трассовый режим: ${props.roadProp}%`;
+        `Городской режим ${Math.round(cityProp*100)}%\n` +
+        `Трассовый режим ${Math.round(roadProp*100)}%`;
 }
 
-// Кнопка Зима
+// Зимний расчет
 function calcWinter() {
-    const distance = Number(document.getElementById("winterDistance").value) || 0;
-    const props = getProps(true);
-    const result = calculateFuel(distance, props.cityRate, props.roadRate, props.cityProp, props.roadProp);
+    const input = document.getElementById("winterDistance").value;
+    if (!input || isNaN(input)) {
+        document.getElementById("winterResult").innerText = "Введите значение пробега";
+        return;
+    }
+    const distance = Number(input);
+
+    const cityRate = Number(document.getElementById("inputCityRate")?.value) || 13.8;
+    const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 10.2;
+    const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3;
+    const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7;
+
+    const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
     document.getElementById("winterResult").innerText =
-        `Общий расход ${result.totalFuel.toFixed(2)} л\n\n` +
+        `Общий расход ${totalFuel.toFixed(2)} л\n\n` +
         `Детализация\n` +
-        `Пробег по городу ${result.cityDistance.toFixed(2)} км\n` +
-        `Пробег по трассе ${result.roadDistance.toFixed(2)} км\n\n` +
+        `Пробег по городу ${cityDistance.toFixed(2)} км\n` +
+        `Пробег по трассе ${roadDistance.toFixed(2)} км\n\n` +
         `Нормы расхода\n` +
-        `Город ${props.cityRate} л на 100 км\n` +
-        `Трасса ${props.roadRate} л на 100 км\n\n` +
+        `Город ${cityRate} л на 100 км\n` +
+        `Трасса ${roadRate} л на 100 км\n\n` +
         `Пропорции\n` +
-        `Городской режим: ${props.cityProp}%\n` +
-        `Трассовый режим: ${props.roadProp}%`;
+        `Городской режим ${Math.round(cityProp*100)}%\n` +
+        `Трассовый режим ${Math.round(roadProp*100)}%`;
 }
 
-// Кнопка "О программе"
+// Кнопка "О программе" и модальное окно
 document.getElementById('btnAbout').addEventListener('click', function() {
-    if (navigator.vibrate) navigator.vibrate(10);
 
+    // Haptic feedback
+    if (navigator.vibrate) {
+        navigator.vibrate(10);
+    }
+
+    // Создаем модальное окно
     const modal = document.createElement('div');
     modal.className = 'modal-background';
 
@@ -97,7 +106,9 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     const closeBtn = document.createElement('button');
     closeBtn.innerText = "OK";
     closeBtn.className = 'modal-close';
-    closeBtn.addEventListener('click', () => document.body.removeChild(modal));
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
     container.appendChild(closeBtn);
 
     modal.appendChild(container);
