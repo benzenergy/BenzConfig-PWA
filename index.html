@@ -82,6 +82,16 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     text.style.whiteSpace = 'pre-line'; // переносы строк
     text.style.fontSize = '14px';
     container.appendChild(text);
+
+    // Дополнительный серый текст
+    const subText = document.createElement('p');
+    subText.innerText = "Для внутреннего использования\nВерсия PWA для iOS";
+    subText.style.color = '#777';        // серый цвет
+    subText.style.fontSize = '12px';     // меньше шрифт
+    subText.style.marginTop = '10px';    // отступ сверху
+    subText.style.whiteSpace = 'pre-line';
+    container.appendChild(subText);
+
     
     // Кнопка закрытия
     const closeBtn = document.createElement('button');
@@ -102,6 +112,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
 <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
