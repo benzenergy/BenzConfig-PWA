@@ -1,4 +1,4 @@
-// Функция расчёта топлива с пропорциями
+// Универсальная функция расчёта расхода топлива
 function calculateFuel(distance, cityRate, roadRate, cityProp, roadProp) {
     const cityDistance = distance * cityProp;
     const roadDistance = distance * roadProp;
@@ -17,12 +17,13 @@ function calculateFuel(distance, cityRate, roadRate, cityProp, roadProp) {
     };
 }
 
+// Летний расчет
 function calcSummer() {
     const distance = Number(document.getElementById("summerDistance").value);
     const cityRate = Number(document.getElementById("inputCityRate").value) || 11.5;
     const roadRate = Number(document.getElementById("inputRoadRate").value) || 8.5;
-    const cityProp = Number(document.getElementById("inputCityProp").value) / 100 || 0.3;
-    const roadProp = Number(document.getElementById("inputRoadProp").value) / 100 || 0.7;
+    const cityProp = (Number(document.getElementById("inputCityProp").value) / 100) || 0.3;
+    const roadProp = (Number(document.getElementById("inputRoadProp").value) / 100) || 0.7;
 
     const res = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
@@ -35,16 +36,17 @@ function calcSummer() {
         `Город ${cityRate} л на 100 км\n` +
         `Трасса ${roadRate} л на 100 км\n\n` +
         `Пропорции\n` +
-        `Городской режим ${Math.round(cityProp * 100)}%\n` +
-        `Трассовый режим ${Math.round(roadProp * 100)}%`;
+        `Городской режим ${Math.round(cityProp*100)}%\n` +
+        `Трассовый режим ${Math.round(roadProp*100)}%`;
 }
 
+// Зимний расчет
 function calcWinter() {
     const distance = Number(document.getElementById("winterDistance").value);
     const cityRate = Number(document.getElementById("inputCityRate").value) || 13.8;
     const roadRate = Number(document.getElementById("inputRoadRate").value) || 10.2;
-    const cityProp = Number(document.getElementById("inputCityProp").value) / 100 || 0.3;
-    const roadProp = Number(document.getElementById("inputRoadProp").value) / 100 || 0.7;
+    const cityProp = (Number(document.getElementById("inputCityProp").value) / 100) || 0.3;
+    const roadProp = (Number(document.getElementById("inputRoadProp").value) / 100) || 0.7;
 
     const res = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
@@ -57,6 +59,49 @@ function calcWinter() {
         `Город ${cityRate} л на 100 км\n` +
         `Трасса ${roadRate} л на 100 км\n\n` +
         `Пропорции\n` +
-        `Городской режим ${Math.round(cityProp * 100)}%\n` +
-        `Трассовый режим ${Math.round(roadProp * 100)}%`;
+        `Городской режим ${Math.round(cityProp*100)}%\n` +
+        `Трассовый режим ${Math.round(roadProp*100)}%`;
 }
+
+// Кнопка "О программе" и модальное окно
+document.getElementById('btnAbout').addEventListener('click', function() {
+
+    if (navigator.vibrate) navigator.vibrate(10);
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-background';
+
+    const container = document.createElement('div');
+    container.className = 'modal-container';
+
+    const img = document.createElement('img');
+    img.src = 'icon-180.png';
+    img.className = 'modal-icon';
+    container.appendChild(img);
+
+    const text = document.createElement('p');
+    text.innerText =
+        "BenzConfig Web App\n\n" +
+        "Лицензия: GNU GPL v3.0\n" +
+        "Материалы: www.flaticon.com\n" +
+        "Исходный код: github.com/benzenergy\n" +
+        "Автор: В.А. Чекаев";
+    text.className = 'modal-text';
+    container.appendChild(text);
+
+    const subText = document.createElement('p');
+    subText.innerText = "PWA-версия для iOS";
+    subText.className = 'modal-subtext';
+    container.appendChild(subText);
+
+    const closeBtn = document.createElement('button');
+    closeBtn.innerText = "OK";
+    closeBtn.className = 'modal-close';
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+    container.appendChild(closeBtn);
+
+    modal.appendChild(container);
+    document.body.appendChild(modal);
+});
