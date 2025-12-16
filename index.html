@@ -8,8 +8,6 @@
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
-
-    <!-- Подключение CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,22 +17,20 @@
 <div class="block">
     <h3>Летний</h3>
     <input id="summerDistance" type="number" placeholder="Пробег, км">
-    <button id="btnSummer">Рассчитать</button>
+    <button onclick="calcSummer()">Рассчитать</button>
     <div id="summerResult"></div>
 </div>
 
 <div class="block">
     <h3>Зимний</h3>
     <input id="winterDistance" type="number" placeholder="Пробег, км">
-    <button id="btnWinter">Рассчитать</button>
+    <button onclick="calcWinter()">Рассчитать</button>
     <div id="winterResult"></div>
 </div>
 
-<button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
-    
-<!-- Подключение JS -->
-<script src="app.js"></script>
+<button id="btnAbout" class="info-button" aria-label="О программе">ℹ️</button>
 
+<script src="app.js"></script>
 <script>
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
