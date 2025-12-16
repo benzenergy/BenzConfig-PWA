@@ -1,4 +1,4 @@
-// ===== Расчёт топлива =====
+// Функции расчета топлива
 function calculateFuel(distance, cityRate, roadRate) {
     const cityProp = 0.3;
     const roadProp = 0.7;
@@ -23,33 +23,26 @@ function calcWinter() {
         "Расход: " + fuel.toFixed(2) + " л";
 }
 
-// ===== Привязка кнопок расчёта =====
-document.getElementById("btnSummer").addEventListener("click", calcSummer);
-document.getElementById("btnWinter").addEventListener("click", calcWinter);
-
-// ===== Кнопка "О программе" =====
+// Кнопка "О программе" и модальное окно
 document.getElementById('btnAbout').addEventListener('click', function() {
 
-    // Haptic (если поддерживается)
+    // Haptic feedback
     if (navigator.vibrate) {
         navigator.vibrate(10);
     }
-    
-    // Создаем полупрозрачный фон модального окна
+
+    // Создаем модальное окно
     const modal = document.createElement('div');
     modal.className = 'modal-background';
 
-    // Контейнер с информацией
     const container = document.createElement('div');
     container.className = 'modal-container';
 
-    // Иконка
     const img = document.createElement('img');
     img.src = 'icon-180.png';
     img.className = 'modal-icon';
     container.appendChild(img);
 
-    // Основной текст
     const text = document.createElement('p');
     text.innerText =
         "BenzConfig Web App\n\n" +
@@ -60,13 +53,11 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     text.className = 'modal-text';
     container.appendChild(text);
 
-    // Серый вторичный текст
     const subText = document.createElement('p');
     subText.innerText = "PWA-версия для iOS";
     subText.className = 'modal-subtext';
     container.appendChild(subText);
 
-    // OK
     const closeBtn = document.createElement('button');
     closeBtn.innerText = "OK";
     closeBtn.className = 'modal-close';
