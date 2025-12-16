@@ -14,6 +14,7 @@
 
 <h2>BenzConfig</h2>
 
+<!-- Летний расчет -->
 <div class="block">
     <h3 class="summer-title">Летний</h3>
     <input id="summerDistance" type="number" placeholder="Пробег, км">
@@ -21,6 +22,7 @@
     <div id="summerResult"></div>
 </div>
 
+<!-- Зимний расчет -->
 <div class="block">
     <h3 class="winter-title">Зимний</h3>
     <input id="winterDistance" type="number" placeholder="Пробег, км">
@@ -28,6 +30,21 @@
     <div id="winterResult"></div>
 </div>
 
+<!-- Настройки пропорций -->
+<div class="block">
+    <h4>Пропорции (%)</h4>
+    <input id="inputCityProp" type="number" placeholder="Город (%)" value="30">
+    <input id="inputRoadProp" type="number" placeholder="Трасса (%)" value="70">
+</div>
+
+<!-- Настройки норм расхода -->
+<div class="block">
+    <h4>Нормы расхода (л/100 км)</h4>
+    <input id="inputCityRate" type="number" placeholder="Город" value="11.5">
+    <input id="inputRoadRate" type="number" placeholder="Трасса" value="8.5">
+</div>
+
+<!-- Кнопка О программе -->
 <button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
 
 <script src="app.js"></script>
