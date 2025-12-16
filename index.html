@@ -4,16 +4,10 @@
     <meta charset="UTF-8">
     <title>BenzConfig</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="BenzConfig">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
     <link rel="apple-touch-icon" href="icon-180.png">
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
-
     <style>
         body {
             font-family: sans-serif;
@@ -58,7 +52,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     if (navigator.vibrate) {
         navigator.vibrate(10);
     }
-
+    
     // Создаем полупрозрачный фон модального окна
     const modal = document.createElement('div');
     modal.style.position = 'fixed';
@@ -104,7 +98,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     text.style.textAlign = 'center';
     container.appendChild(text);
 
-    // Серый вторичный текст (iOS style)
+    // Серый вторичный текст
     const subText = document.createElement('p');
     subText.innerText = "PWA-версия для iOS";
     subText.style.fontSize = '12px';
@@ -121,16 +115,13 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     closeBtn.addEventListener('click', () => {
         document.body.removeChild(modal);
     });
-
     container.appendChild(closeBtn);
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
-    
+
 </script>
-
 <script src="app.js"></script>
-
 <script>
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -140,9 +131,9 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
-
 </body>
 </html>
+
 
 
 
