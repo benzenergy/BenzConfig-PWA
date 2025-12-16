@@ -75,21 +75,49 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     img.style.height = '60px';
     img.style.marginBottom = '8px';
     container.appendChild(img);
-
+    
     // Текст
     const text = document.createElement('p');
-    text.innerText = "BenzConfig Web App\n\n Лицензия: GNU GPL v3.0\n Материалы: www.flaticon.ru\n Исходный код: github.com/benzenergy\n Автор: В.А. Чекаев";
-    text.style.whiteSpace = 'pre-line'; // переносы строк
-    text.style.fontSize = '14px';
+    text.innerText =
+        "BenzConfig Web App\n\n" +
+        "Лицензия: GNU GPL v3.0\n" +
+        "Материалы: www.flaticon.ru\n" +
+        "Исходный код: github.com/benzenergy\n" +
+        "Автор: В.А. Чекаев";
+
+    text.style.whiteSpace = 'pre-line';
+    text.style.fontSize = '15px';
+    text.style.lineHeight = '1.4';
+    text.style.margin = '0';
+    text.style.textAlign = 'center';
     container.appendChild(text);
+    
+    // Текст
+  //  const text = document.createElement('p');
+ //   text.innerText = "BenzConfig Web App\n\n Лицензия: GNU GPL v3.0\n Материалы: www.flaticon.ru\n Исходный код: github.com/benzenergy\n Автор: В.А. Чекаев";
+   // text.style.whiteSpace = 'pre-line'; // переносы строк
+    //text.style.fontSize = '14px';
+    //container.appendChild(text); //
 
     // Дополнительный текст
+   // const subText = document.createElement('p');
+    //subText.innerText = "Версия PWA для iOS";
+    //subText.style.color = '#777';        // серый цвет
+    //subText.style.fontSize = '10px';     // размер шрифта
+    //subText.style.marginTop = '10px';    // отступ сверху
+    //subText.style.whiteSpace = 'pre-line';
+    //container.appendChild(subText);
+    
     const subText = document.createElement('p');
-    subText.innerText = "Версия PWA для iOS";
-    subText.style.color = '#777';        // серый цвет
-    subText.style.fontSize = '10px';     // размер шрифта
-    subText.style.marginTop = '10px';    // отступ сверху
+    subText.innerText =
+        "PWA-версия для iOS\n" +
+        "Для внутреннего использования";
+
     subText.style.whiteSpace = 'pre-line';
+    subText.style.fontSize = '12px';
+    subText.style.color = '#8e8e93'; // системный серый iOS
+    subText.style.marginTop = '12px';
+    subText.style.textAlign = 'center';
     container.appendChild(subText);
 
     
@@ -112,6 +140,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
 <script src="app.js"></script>
 </body>
 </html>
+
 
 
 
