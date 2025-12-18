@@ -127,7 +127,7 @@ if ('serviceWorker' in navigator) { <!-- Проверка поддержки ser
         const splash = document.getElementById('splash-screen');
         setTimeout(() => {
             splash.style.opacity = 0; // Плавное исчезновение
-            splash.style.transform = 'scale(1.5)'; // Лёгкое увеличение
+            splash.style.transform = 'scale(1.2)'; // Лёгкое увеличение
             setTimeout(() => splash.style.display = 'none', 500); // Скрытие после анимации
         }, 700); // Показываем сплэш 0,7 сек.
     });
@@ -135,5 +135,6 @@ if ('serviceWorker' in navigator) { <!-- Проверка поддержки ser
 
 </body> <!-- Конец видимой части страницы -->
 </html> <!-- Конец документа HTML -->
+
 
 
