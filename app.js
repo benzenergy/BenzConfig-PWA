@@ -1,3 +1,4 @@
+// ======= Функция расчета топлива =======
 function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 0.7) {
     const cityDistance = distance * cityProp;
     const roadDistance = distance * roadProp;
@@ -7,17 +8,34 @@ function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 
     return { totalFuel, cityDistance, roadDistance, cityFuel, roadFuel }; 
 }
 
+// ======= Убираем "двойной тап" для мобильных =======
 let lastTouchEnd = 0;
 document.addEventListener('touchend', function (event) {
     const now = Date.now();
-    if (now - lastTouchEnd <= 300) event.preventDefault();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
     lastTouchEnd = now;
 }, false);
 
+// ======= Плавное отображение результатов =======
+function showResult(elementId, text) {
+    const el = document.getElementById(elementId);
+    el.classList.add('result'); // класс с CSS transition
+    el.style.opacity = 0;
+
+    el.innerText = text;
+
+    requestAnimationFrame(() => {
+        el.style.opacity = 1;
+    });
+}
+
+// ======= Функции для кнопок "Летний" и "Зимний" =======
 function calcSummer() {    
     const input = document.getElementById("summerDistance").value; 
     if (!input || isNaN(input)) { 
-        document.getElementById("summerResult").innerText = "Введите значение пробега"; 
+        showResult("summerResult", "Введите значение пробега");
         return; 
     }
     const distance = Number(input);
@@ -25,10 +43,9 @@ function calcSummer() {
     const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 8.5;
     const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3;
     const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7;
-
     const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
-    document.getElementById("summerResult").innerText =
+    const resultText =
         `Общий расход ${totalFuel.toFixed(2)} л\n\n` +
         `Детализация\n` +
         `Пробег по городу ${cityDistance.toFixed(2)} км\n` +
@@ -39,12 +56,14 @@ function calcSummer() {
         `Пропорции\n` +
         `Городской режим ${Math.round(cityProp*100)}%\n` +
         `Трассовый режим ${Math.round(roadProp*100)}%`;
+
+    showResult("summerResult", resultText);
 }
 
 function calcWinter() {
     const input = document.getElementById("winterDistance").value; 
     if (!input || isNaN(input)) {
-        document.getElementById("winterResult").innerText = "Введите значение пробега";
+        showResult("winterResult", "Введите значение пробега");
         return;
     }
     const distance = Number(input);
@@ -52,10 +71,9 @@ function calcWinter() {
     const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 10.2; 
     const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3; 
     const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7; 
-
     const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
-    document.getElementById("winterResult").innerText =
+    const resultText =
         `Общий расход ${totalFuel.toFixed(2)} л\n\n` +
         `Детализация\n` +
         `Пробег по городу ${cityDistance.toFixed(2)} км\n` +
@@ -66,14 +84,17 @@ function calcWinter() {
         `Пропорции\n` +
         `Городской режим ${Math.round(cityProp*100)}%\n` +
         `Трассовый режим ${Math.round(roadProp*100)}%`;
+
+    showResult("winterResult", resultText);
 }
 
+// ======= Модальное окно "О программе" =======
 document.getElementById('btnAbout').addEventListener('click', function() { 
-    if (navigator.vibrate) navigator.vibrate(10);
-
+    if (navigator.vibrate) { 
+        navigator.vibrate(10);
+    }
     const modal = document.createElement('div');
     modal.className = 'modal-background';
-
     const container = document.createElement('div');
     container.className = 'modal-container';
 
@@ -100,13 +121,22 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     const closeBtn = document.createElement('button');
     closeBtn.innerText = "OK";
     closeBtn.className = 'modal-close';
-    closeBtn.addEventListener('click', () => document.body.removeChild(modal));
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('show'); // плавное скрытие
+        setTimeout(() => document.body.removeChild(modal), 300);
+    });
     container.appendChild(closeBtn);
 
     modal.appendChild(container);
     document.body.appendChild(modal);
+
+    // Запуск плавного появления
+    requestAnimationFrame(() => {
+        modal.classList.add('show');
+    });
 });
 
+// ======= Service Worker и Splash Screen =======
 window.addEventListener('load', () => {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
@@ -122,4 +152,3 @@ window.addEventListener('load', () => {
         setTimeout(() => splash.style.display = 'none', 500);
     }, 700);
 });
-
