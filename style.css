@@ -148,3 +148,8 @@ button:active {
     width: 50%; /* Два поля делят контейнер поровну */
     margin-top: 0; /* Убираем верхний отступ, чтобы выровнять с соседним полем */
 }
+
+@media (prefers-color-scheme: dark) {
+    body { background-color: #000; color: #fff; }
+    input, button { background-color: #222; color: #fff; border-color: #444; }
+}
