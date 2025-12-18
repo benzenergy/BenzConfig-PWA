@@ -21,92 +21,43 @@
     <img src="assets/icon-180.png" alt="BenzConfig" class="splash-icon">
     <p class="splash-text">BenzConfig</p>
 </div>
+
 <div class="app-header">
     <img src="assets/icon-180.png" alt="BenzConfig" class="app-icon">
 </div>
+
 <div class="block">
     <h3 class="summer-label">Летний</h3>
-    <input
-        id="summerDistance"
-        type="number"
-        inputmode="decimal"
-        placeholder="Пробег, км"
-        autocomplete="off"
-        >
+    <input id="summerDistance" type="number" inputmode="decimal" placeholder="Пробег, км" autocomplete="off">
     <button onclick="calcSummer()">Рассчитать</button>
     <div id="summerResult"></div>
 </div>
+
 <div class="block">
     <h3 class="winter-label">Зимний</h3>
-    <input
-        id="winterDistance"
-        type="number"
-        inputmode="decimal"
-        placeholder="Пробег, км"
-        autocomplete="off"
-        >
+    <input id="winterDistance" type="number" inputmode="decimal" placeholder="Пробег, км" autocomplete="off">
     <button onclick="calcWinter()">Рассчитать</button>
     <div id="winterResult"></div>
 </div>
+
 <div class="block">
     <h3>Настройки пропорций, %</h3>
     <div class="row">
-        <input
-            id="inputCityProp"
-            type="number"
-            inputmode="decimal"
-            placeholder="Город 30%"
-            autocomplete="off"
-            >
-        <input
-            id="inputRoadProp"
-            type="number"
-            inputmode="decimal"
-            placeholder="Трасса 70%"
-            autocomplete="off"
-            >
+        <input id="inputCityProp" type="number" inputmode="decimal" placeholder="Город 30%" autocomplete="off">
+        <input id="inputRoadProp" type="number" inputmode="decimal" placeholder="Трасса 70%" autocomplete="off">
     </div>
 </div>
+
 <div class="block">
     <h3>Нормы расхода, л/100 км</h3>
     <div class="row">
-        <input
-            id="inputCityRate"
-            type="number"
-            inputmode="decimal"
-            placeholder="Город"
-            autocomplete="off"
-            >
-        <input
-            id="inputRoadRate"
-            type="number"
-            inputmode="decimal"
-            placeholder="Трасса"
-            autocomplete="off"
-            >
+        <input id="inputCityRate" type="number" inputmode="decimal" placeholder="Город" autocomplete="off">
+        <input id="inputRoadRate" type="number" inputmode="decimal" placeholder="Трасса" autocomplete="off">
     </div>
 </div>
-<button id="btnAbout" class="info-button" aria-label="О программе">
-    О программе
-</button>
+
+<button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
 
 <script src="app.js"></script>
-
-<script>
-window.addEventListener('load', () => {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-            .register('/service-worker.js')
-            .then(() => console.log('Service Worker registered'))
-            .catch(err => console.warn('SW error:', err));
-    }
-    const splash = document.getElementById('splash-screen');
-    setTimeout(() => {
-        splash.style.opacity = 0;
-        splash.style.transform = 'scale(1.2)';
-        setTimeout(() => splash.style.display = 'none', 500);
-    }, 700);
-});
-</script>
 </body>
 </html>
