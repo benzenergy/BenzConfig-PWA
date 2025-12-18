@@ -149,12 +149,6 @@ button:active {
     margin-top: 0; /* Убираем верхний отступ, чтобы выровнять с соседним полем */
 }
 
-@media (prefers-color-scheme: dark) {
-    body { background-color: #000; color: #fff; }
-    input, button { background-color: #222; color: #fff; border-color: #444; }
-}
-
-/* ===================== Splash Screen ===================== */
 #splash-screen {
     position: fixed; /* Поверх всего интерфейса */
     top: 0; left: 0; width: 100%; height: 100%;
