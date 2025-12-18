@@ -6,6 +6,10 @@ body {
     line-height: 1.5;
 }
 
+html, body {
+    touch-action: manipulation;
+}
+
 .block {
     margin-top: 20px;
 }
