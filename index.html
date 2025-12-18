@@ -122,17 +122,18 @@ if ('serviceWorker' in navigator) { <!-- Проверка поддержки ser
             .catch(err => console.log('SW error:', err)); <!-- Лог ошибки -->
     });
 }
-    // ===================== Анимация сплэш-скрина =====================
+    // Анимация сплэш-скрина 
     window.addEventListener('load', () => {
         const splash = document.getElementById('splash-screen');
         setTimeout(() => {
             splash.style.opacity = 0; // Плавное исчезновение
-            splash.style.transform = 'scale(1.1)'; // Лёгкое увеличение
+            splash.style.transform = 'scale(1.5)'; // Лёгкое увеличение
             setTimeout(() => splash.style.display = 'none', 500); // Скрытие после анимации
-        }, 1000); // Показываем сплэш 1 секунду
+        }, 700); // Показываем сплэш 0,7 сек.
     });
 </script>
 
 </body> <!-- Конец видимой части страницы -->
 </html> <!-- Конец документа HTML -->
+
 
