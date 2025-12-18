@@ -1,171 +1,155 @@
-/* ===================== Общие стили ===================== */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; /* Системный шрифт */
-    padding: 16px; /* Отступы вокруг контента */
-    background-color: #ffffff; /* Белый фон */
-    color: #000000; /* Цвет текста */
-    line-height: 1.5; /* Межстрочный интервал */
-    transition: background-color 0.3s, color 0.3s; /* Плавная смена темы */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; /* Набор системных и веб-шрифтов для кроссплатформенного отображения */
+    padding: 16px; /* Внутренний отступ всего тела страницы */
+    background-color: #ffffff; /* Белый фон страницы */
+    color: #000000; /* Цвет текста — черный */
+    line-height: 1.5; /* Межстрочный интервал для лучшей читаемости */
 }
 
 html, body {
-    touch-action: manipulation; /* Оптимизация сенсорного управления */
-    overscroll-behavior: none; /* Отключаем «потягивание» страницы */
+    touch-action: manipulation; /* Оптимизация для сенсорного управления: отключает задержку на касание */
+    overscroll-behavior: none; /* Отключает «потягивание» страницы за пределы контента на мобильных */
 }
 
-* {
-    -webkit-tap-highlight-color: transparent; /* Убираем подсветку на мобильных устройствах */
-}
-
-/* ===================== Сплэш-скрин ===================== */
-#splash-screen {
-    position: fixed; /* Поверх всего интерфейса */
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #ffffff; /* Цвет фона сплэша */
-    display: flex; justify-content: center; align-items: center;
-    flex-direction: column;
-    z-index: 2000; /* Поверх всего контента */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Плавная анимация */
-}
-
-.splash-icon {
-    width: 80px; height: 80px; /* Размер иконки */
-    margin-bottom: 12px;
-}
-
-.splash-text {
-    font-size: 24px; font-weight: bold; color: #007AFF;
-}
-
-/* ===================== Блоки ===================== */
 .block {
-    margin-top: 20px; /* Отступ сверху */
-    padding: 16px; /* Внутренний отступ */
-    border-radius: 16px; /* Скругление углов */
-    background-color: #f8f8f8; /* Лёгкий фон блока */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Тень для ощущения слоёв */
-    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-top: 20px; /* Отступ сверху для всех блоков контента */
 }
 
-/* ===================== Заголовки ===================== */
-.summer-label { color: #FF6600; font-weight: bold; font-size: 18px; }
-.winter-label { color: #3399FF; font-weight: bold; font-size: 18px; }
+.summer-title {
+    color: #FF6600; /* Оранжевый цвет текста */
+    font-weight: bold; /* Жирное начертание */
+    font-size: 18px; /* Размер шрифта */
+}
 
-/* ===================== Input и кнопки ===================== */
+.winter-title {
+    color: #3399FF; /* Синий цвет текста */
+    font-weight: bold; /* Жирное начертание */
+    font-size: 18px; /* Размер шрифта */
+}
+
 input, button {
-    width: 100%; /* Полная ширина контейнера */
-    padding: 12px; /* Внутренний отступ */
+    width: 100%; /* Поля ввода и кнопки занимают всю ширину контейнера */
+    padding: 12px; /* Внутренний отступ внутри input и button */
     margin-top: 8px; /* Отступ сверху */
     font-size: 16px; /* Размер текста */
-    border: 1px solid #ccc; /* Цвет рамки */
-    border-radius: 24px; /* Скругление */
-    box-sizing: border-box; 
-    outline: none;
-    transition: all 0.2s ease;
-    background-clip: padding-box; /* Для ripple-эффекта */
+    border: 1px solid #ccc; /* Светло-серая рамка */
+    border-radius: 24px; /* Скругление углов */
+    box-sizing: border-box; /* Учитывает padding и border при расчете ширины */
+    outline: none; /* Убирает стандартное выделение при фокусе */
+    transition: all 0.2s ease; /* Плавный переход для всех свойств при изменении */
 }
 
 input:focus {
     border-color: #007AFF; /* Синяя рамка при фокусе */
-    box-shadow: 0 0 0 2px rgba(0,122,255,0.2); /* Тень вокруг поля */
+    box-shadow: 0 0 0 2px rgba(0,122,255,0.2); /* Тень вокруг поля при фокусе */
 }
 
-/* ===================== Кнопки с ripple ===================== */
 button {
-    background-color: #f0f0f0;
-    color: #000000;
-    font-weight: 600;
-    cursor: pointer;
-    position: relative; /* Для ripple */
-    overflow: hidden; /* Чтобы ripple не выходил за границы */
-    transition: opacity 0.2s, background-color 0.2s, transform 0.1s;
+    background-color: #f0f0f0; /* Светлый фон кнопки */
+    color: #000000; /* Черный текст кнопки */
+    font-weight: 600; /* Полужирное начертание */
+    cursor: pointer; /* Курсор указывает, что элемент кликабельный */
+    transition: opacity 0.2s, background-color 0.2s; /* Плавный переход для прозрачности и фона */
 }
 
-button:hover { background-color: #e0e0e0; }
+button:hover {
+    background-color: #e0e0e0; /* Более темный фон при наведении */
+}
+
 button:active {
-    opacity: 0.8; 
-    transform: scale(0.97); /* Эффект нажатия */
+    opacity: 0.7; /* Прозрачность при нажатии для эффекта «вдавливания» */
 }
 
-/* Ripple псевдоэлемент */
-button::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    background: rgba(0,0,0,0.1);
-    transform: scale(0);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.5s, opacity 1s;
-}
-
-button:focus::after, button:active::after {
-    transform: scale(3);
-    opacity: 1;
-    transition: transform 0.3s, opacity 0.6s;
-}
-
-/* ===================== Ряд для двух input ===================== */
-.row {
-    display: flex;
-    gap: 10px;
-}
-.row input { width: 50%; margin-top: 0; }
-
-/* ===================== Модальное окно ===================== */
 .modal-background {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    animation: fadeIn 0.3s forwards;
+    position: fixed; /* Фиксированное положение на экране */
+    top: 0; /* Отступ сверху 0 */
+    left: 0; /* Отступ слева 0 */
+    width: 100%; /* Ширина экрана */
+    height: 100%; /* Высота экрана */
+    background: rgba(0,0,0,0.5); /* Полупрозрачный черный фон */
+    display: flex; /* Flex-контейнер для центрирования */
+    align-items: center; /* Вертикальное выравнивание по центру */
+    justify-content: center; /* Горизонтальное выравнивание по центру */
+    z-index: 1000; /* Поверх остальных элементов */
 }
 
 .modal-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 16px;
-    text-align: center;
-    max-width: 300px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transform: scale(0.95);
-    animation: scaleIn 0.3s forwards;
+    background: #fff; /* Белый фон модального окна */
+    padding: 20px; /* Внутренний отступ */
+    border-radius: 16px; /* Скругление углов */
+    text-align: center; /* Центрирование текста */
+    max-width: 300px; /* Максимальная ширина окна */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Тень вокруг модального окна */
 }
 
-.modal-icon { width: 60px; height: 60px; margin-bottom: 12px; }
-.modal-text { white-space: pre-line; font-size: 14px; line-height: 1.4; margin: 0; text-align: center; }
-.modal-subtext { font-size: 12px; color: #8e8e93; margin-top: 12px; text-align: center; }
+.modal-icon {
+    width: 60px; /* Ширина иконки */
+    height: 60px; /* Высота иконки */
+    margin-bottom: 12px; /* Отступ снизу */
+}
+
+.modal-text {
+    white-space: pre-line; /* Сохраняет переносы строк */
+    font-size: 14px; /* Размер текста */
+    line-height: 1.4; /* Межстрочный интервал */
+    margin: 0; /* Убирает стандартные отступы */
+    text-align: center; /* Центрирование текста */
+}
+
+.modal-subtext {
+    font-size: 12px; /* Размер текста второстепенной информации */
+    color: #8e8e93; /* Серый цвет */
+    margin-top: 12px; /* Отступ сверху */
+    text-align: center; /* Центрирование текста */
+}
 
 .modal-close {
-    margin-top: 16px; padding: 10px 16px; cursor: pointer;
-    background-color: #f0f0f0; color: #000;
-    border: none; border-radius: 24px; font-weight: 600;
-    transition: opacity 0.2s, background-color 0.2s, transform 0.1s;
+    margin-top: 16px; /* Отступ сверху кнопки */
+    padding: 10px 16px; /* Внутренний отступ */
+    cursor: pointer; /* Курсор указывает, что элемент кликабельный */
+    background-color: #f0f0f0; /* Фон кнопки */
+    color: #000; /* Цвет текста кнопки */
+    border: none; /* Убираем рамку */
+    border-radius: 24px; /* Скругление углов */
+    font-weight: 600; /* Полужирное начертание */
+    transition: opacity 0.2s, background-color 0.2s; /* Плавный переход */
 }
-.modal-close:hover { background-color: #e0e0e0; }
-.modal-close:active { opacity: 0.8; transform: scale(0.97); }
 
-/* ===================== Анимации ===================== */
-@keyframes fadeIn { to { opacity: 1; } }
-@keyframes scaleIn { to { transform: scale(1); } }
+.modal-close:hover {
+    background-color: #e0e0e0; /* Изменение фона при наведении */
+}
 
-/* ===================== Заголовок приложения ===================== */
-.app-header { display: flex; justify-content: center; align-items: center; margin: 16px 0 24px 0; }
-.app-icon { width: 64px; height: 64px; }
+.modal-close:active {
+    opacity: 0.7; /* Прозрачность при нажатии */
+}
 
-/* ===================== Тёмная тема ===================== */
+.app-header {
+    display: flex; /* Flex-контейнер для центрирования иконки */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    margin: 16px 0 24px 0; /* Отступы сверху и снизу */
+}
+
+.app-icon {
+    width: 64px;   /* Ширина иконки (можно менять 64/72/80) */
+    height: 64px; /* Высота иконки */
+}
+
+* {
+    -webkit-tap-highlight-color: transparent; /* Убирает подсветку при касании на мобильных устройствах */
+}
+
+.row {
+    display: flex; /* Размещение элементов горизонтально */
+    gap: 10px; /* Расстояние между полями */
+}
+
+.row input {
+    width: 50%; /* Два поля делят контейнер поровну */
+    margin-top: 0; /* Убираем верхний отступ, чтобы выровнять с соседним полем */
+}
+
 @media (prefers-color-scheme: dark) {
-    body { background-color: #121212; color: #fff; }
-    .block { background-color: #1E1E1E; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
-    input, button { background-color: #2A2A2A; color: #fff; border-color: #444; }
-    button:hover { background-color: #3A3A3A; }
-    .modal-container { background-color: #1E1E1E; color: #fff; }
-    .modal-close { background-color: #2A2A2A; color: #fff; }
+    body { background-color: #000; color: #fff; }
+    input, button { background-color: #222; color: #fff; border-color: #444; }
 }
