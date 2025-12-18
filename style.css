@@ -130,6 +130,6 @@ button:active {
 }
 
 .app-icon {
-    width: 50px;   /* можешь менять: 64 / 72 / 80 */
-    height: 50px;
+    width: 64px;   /* менять: 64 / 72 / 80 */
+    height: 64px;
 }
