@@ -138,3 +138,13 @@ button:active {
 * {
     -webkit-tap-highlight-color: transparent;
 }
+
+.row {
+    display: flex;
+    gap: 10px; /* Расстояние между полями */
+}
+
+.row input {
+    width: 50%; /* Два поля по ширине контейнера */
+    margin-top: 0; /* Убираем отступ сверху, чтобы выровнять с соседним полем */
+}
