@@ -10,6 +10,16 @@ function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 
     return { totalFuel, cityDistance, roadDistance, cityFuel, roadFuel };
 }
 
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
+
+
 // Летний расчет
 function calcSummer() {
     const input = document.getElementById("summerDistance").value;
@@ -114,3 +124,4 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
+
