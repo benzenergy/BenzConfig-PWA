@@ -116,7 +116,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     container.className = 'modal-container'; // Контейнер для контента окна
 
     const img = document.createElement('img'); 
-    img.src = 'icon-180.png'; // Иконка в модальном окне
+    img.src = 'assets/icon-180.png'; // Иконка в модальном окне
     img.className = 'modal-icon'; 
     container.appendChild(img); // Добавляем иконку в контейнер
 
@@ -147,3 +147,4 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     modal.appendChild(container); // Добавляем контейнер с содержимым в фон модального окна
     document.body.appendChild(modal); // Отображаем модальное окно на странице
 });
+
