@@ -121,3 +121,15 @@ button:active {
 .modal-close:active {
     opacity: 0.7;
 }
+
+.app-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0 24px 0;
+}
+
+.app-icon {
+    width: 72px;   /* можешь менять: 64 / 72 / 80 */
+    height: 72px;
+}
