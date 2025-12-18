@@ -1,4 +1,3 @@
-// ===================== Основные функции расчета =====================
 function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 0.7) {
     const cityDistance = distance * cityProp;
     const roadDistance = distance * roadProp;
@@ -8,7 +7,6 @@ function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 
     return { totalFuel, cityDistance, roadDistance, cityFuel, roadFuel }; 
 }
 
-// ===================== Анти-даблтап =====================
 let lastTouchEnd = 0;
 document.addEventListener('touchend', function (event) {
     const now = Date.now();
@@ -16,7 +14,6 @@ document.addEventListener('touchend', function (event) {
     lastTouchEnd = now;
 }, false);
 
-// ===================== Функции расчета =====================
 function calcSummer() {    
     const input = document.getElementById("summerDistance").value; 
     if (!input || isNaN(input)) { 
@@ -71,7 +68,6 @@ function calcWinter() {
         `Трассовый режим ${Math.round(roadProp*100)}%`;
 }
 
-// ===================== Модальное окно "О программе" =====================
 document.getElementById('btnAbout').addEventListener('click', function() { 
     if (navigator.vibrate) navigator.vibrate(10);
 
@@ -111,9 +107,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     document.body.appendChild(modal);
 });
 
-// ===================== Сплэш-скрин и Service Worker =====================
 window.addEventListener('load', () => {
-    // Service Worker
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
             .register('/service-worker.js')
@@ -121,7 +115,6 @@ window.addEventListener('load', () => {
             .catch(err => console.warn('SW error:', err));
     }
 
-    // Сплэш-скрин
     const splash = document.getElementById('splash-screen');
     setTimeout(() => {
         splash.style.opacity = 0;
@@ -129,3 +122,4 @@ window.addEventListener('load', () => {
         setTimeout(() => splash.style.display = 'none', 500);
     }, 700);
 });
+
