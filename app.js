@@ -119,5 +119,48 @@ window.addEventListener('load', () => {
         splash.style.transform = 'scale(1.2)';
         setTimeout(() => splash.style.display = 'none', 500);
     }, 700);
+
+/* =========================
+   AUTOSAVE SETTINGS
+========================= */
+
+// список полей для автосохранения
+const autosaveFields = [
+    'summerDistance',
+    'winterDistance',
+    'inputCityProp',
+    'inputRoadProp',
+    'inputCityRate',
+    'inputRoadRate'
+];
+
+// загрузка сохранённых значений
+function loadSavedValues() {
+    autosaveFields.forEach(id => {
+        const el = document.getElementById(id);
+        const saved = localStorage.getItem(id);
+        if (el && saved !== null) {
+            el.value = saved;
+        }
+    });
+}
+
+// сохранение при вводе
+function setupAutosave() {
+    autosaveFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        el.addEventListener('input', () => {
+            localStorage.setItem(id, el.value);
+        });
+    });
+}
+
+// запуск после загрузки DOM
+window.addEventListener('DOMContentLoaded', () => {
+    loadSavedValues();
+    setupAutosave();
 });
+
 
