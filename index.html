@@ -24,6 +24,11 @@
 </head>
 <body> <!-- Начало видимой части страницы -->
 
+<div id="splash-screen">
+    <img src="icon-180.png" alt="BenzConfig" class="splash-icon">
+    <p class="splash-text">BenzConfig</p>
+</div>
+    
 <!-- Заголовок с иконкой -->
 <div class="app-header"> <!-- Контейнер заголовка приложения -->
     <img src="icon-180.png" alt="BenzConfig" class="app-icon"> <!-- Логотип/иконка приложения -->
@@ -117,7 +122,17 @@ if ('serviceWorker' in navigator) { <!-- Проверка поддержки ser
             .catch(err => console.log('SW error:', err)); <!-- Лог ошибки -->
     });
 }
+    // ===================== Анимация сплэш-скрина =====================
+    window.addEventListener('load', () => {
+        const splash = document.getElementById('splash-screen');
+        setTimeout(() => {
+            splash.style.opacity = 0; // Плавное исчезновение
+            splash.style.transform = 'scale(1.1)'; // Лёгкое увеличение
+            setTimeout(() => splash.style.display = 'none', 500); // Скрытие после анимации
+        }, 1000); // Показываем сплэш 1 секунду
+    });
 </script>
 
 </body> <!-- Конец видимой части страницы -->
 </html> <!-- Конец документа HTML -->
+
