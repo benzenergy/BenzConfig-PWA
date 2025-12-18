@@ -1,91 +1,28 @@
-// Функции расчета топлива
-function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 0.7) { 
-    // Основная функция расчета топлива: принимает расстояние, нормы расхода и пропорции города/трассы
-
-    const cityDistance = distance * cityProp; // Вычисление километража по городу
-    const roadDistance = distance * roadProp; // Вычисление километража по трассе
-
-    const cityFuel = cityDistance * cityRate / 100; // Расход топлива по городу
-    const roadFuel = roadDistance * roadRate / 100; // Расход топлива по трассе
-    const totalFuel = cityFuel + roadFuel; // Общий расход топлива
-
-    return { totalFuel, cityDistance, roadDistance, cityFuel, roadFuel }; 
-    // Возвращаем объект с полным расчетом
-}
-
-let lastTouchEnd = 0; 
-// Переменная для отслеживания времени последнего касания (для устранения двойного тапа на мобильных)
-
-document.addEventListener('touchend', function (event) {
-    const now = Date.now(); // Текущее время
-    if (now - lastTouchEnd <= 300) { // Если прошло меньше 300 мс с последнего touchend
-        event.preventDefault(); // Предотвращаем двойной тап (масштабирование или событие)
-    }
-    lastTouchEnd = now; // Обновляем время последнего касания
-}, false);
-
-
-// Летний расчет
+// ===================== Летний расчет с плавным появлением =====================
 function calcSummer() {
-    const input = document.getElementById("summerDistance").value; 
-    // Получаем значение пробега для летнего расчета
+    const input = document.getElementById("summerDistance").value;
+    const resultDiv = document.getElementById("summerResult");
 
-    if (!input || isNaN(input)) { 
-        // Проверяем, что введено число
-        document.getElementById("summerResult").innerText = "Введите значение пробега"; 
-        // Если нет — выводим сообщение
-        return; 
+    if (!input || isNaN(input)) {
+        resultDiv.innerText = "Введите значение пробега";
+
+        // Плавное появление при ошибке
+        resultDiv.style.opacity = 0;
+        resultDiv.style.transition = 'opacity 0.5s';
+        setTimeout(() => { resultDiv.style.opacity = 1; }, 50);
+
+        return;
     }
 
-    const distance = Number(input); // Преобразуем строку в число
+    const distance = Number(input);
+    const cityRate = Number(document.getElementById("inputCityRate")?.value) || 11.5;
+    const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 8.5;
+    const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3;
+    const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7;
 
-    const cityRate = Number(document.getElementById("inputCityRate")?.value) || 11.5; 
-    // Получаем норму расхода по городу, если пусто — используем 11.5 л/100км
-    const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 8.5; 
-    // Аналогично для трассы
-    const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3; 
-    // Пропорция города (делим на 100), если пусто — 0.3
-    const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7; 
-    // Пропорция трассы
+    const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
-    const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp); 
-    // Вызываем функцию расчета топлива
-
-    document.getElementById("summerResult").innerText =
-        `Общий расход ${totalFuel.toFixed(2)} л\n\n` + // Вывод общего расхода
-        `Детализация\n` +
-        `Пробег по городу ${cityDistance.toFixed(2)} км\n` + // Вывод километража по городу
-        `Пробег по трассе ${roadDistance.toFixed(2)} км\n\n` + // Вывод километража по трассе
-        `Нормы расхода\n` +
-        `Город ${cityRate} л на 100 км\n` + // Норма расхода по городу
-        `Трасса ${roadRate} л на 100 км\n\n` + // Норма расхода по трассе
-        `Пропорции\n` +
-        `Городской режим ${Math.round(cityProp*100)}%\n` + // Пропорция города в %
-        `Трассовый режим ${Math.round(roadProp*100)}%`; // Пропорция трассы в %
-}
-
-// Зимний расчет
-function calcWinter() {
-    const input = document.getElementById("winterDistance").value; 
-    // Получаем значение пробега для зимнего расчета
-
-    if (!input || isNaN(input)) { 
-        document.getElementById("winterResult").innerText = "Введите значение пробега"; 
-        return; 
-    }
-
-    const distance = Number(input); // Преобразуем строку в число
-
-    const cityRate = Number(document.getElementById("inputCityRate")?.value) || 13.8; 
-    const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 10.2; 
-    const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3; 
-    const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7; 
-    // Получаем нормы расхода и пропорции, с разными дефолтными значениями для зимы
-
-    const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp); 
-    // Вызываем функцию расчета
-
-    document.getElementById("winterResult").innerText =
+    resultDiv.innerText =
         `Общий расход ${totalFuel.toFixed(2)} л\n\n` +
         `Детализация\n` +
         `Пробег по городу ${cityDistance.toFixed(2)} км\n` +
@@ -95,55 +32,52 @@ function calcWinter() {
         `Трасса ${roadRate} л на 100 км\n\n` +
         `Пропорции\n` +
         `Городской режим ${Math.round(cityProp*100)}%\n` +
-        `Трассовый режим ${Math.round(roadProp*100)}%`; 
-        // Выводим результат аналогично летнему
+        `Трассовый режим ${Math.round(roadProp*100)}%`;
+
+    // Плавное появление результата
+    resultDiv.style.opacity = 0;
+    resultDiv.style.transition = 'opacity 0.5s';
+    setTimeout(() => { resultDiv.style.opacity = 1; }, 50);
 }
 
-// Кнопка "О программе" и модальное окно
-document.getElementById('btnAbout').addEventListener('click', function() { 
-    // Событие нажатия на кнопку "О программе"
+// ===================== Зимний расчет с плавным появлением =====================
+function calcWinter() {
+    const input = document.getElementById("winterDistance").value;
+    const resultDiv = document.getElementById("winterResult");
 
-    // Haptic feedback
-    if (navigator.vibrate) { 
-        navigator.vibrate(10); // Короткая вибрация при нажатии (если поддерживается)
+    if (!input || isNaN(input)) {
+        resultDiv.innerText = "Введите значение пробега";
+
+        // Плавное появление при ошибке
+        resultDiv.style.opacity = 0;
+        resultDiv.style.transition = 'opacity 0.5s';
+        setTimeout(() => { resultDiv.style.opacity = 1; }, 50);
+
+        return;
     }
 
-    // Создаем модальное окно
-    const modal = document.createElement('div'); 
-    modal.className = 'modal-background'; // Назначаем класс для стилизации фона
+    const distance = Number(input);
+    const cityRate = Number(document.getElementById("inputCityRate")?.value) || 13.8;
+    const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 10.2;
+    const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3;
+    const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7;
 
-    const container = document.createElement('div'); 
-    container.className = 'modal-container'; // Контейнер для контента окна
+    const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
-    const img = document.createElement('img'); 
-    img.src = 'icon-180.png'; // Иконка в модальном окне
-    img.className = 'modal-icon'; 
-    container.appendChild(img); // Добавляем иконку в контейнер
+    resultDiv.innerText =
+        `Общий расход ${totalFuel.toFixed(2)} л\n\n` +
+        `Детализация\n` +
+        `Пробег по городу ${cityDistance.toFixed(2)} км\n` +
+        `Пробег по трассе ${roadDistance.toFixed(2)} км\n\n` +
+        `Нормы расхода\n` +
+        `Город ${cityRate} л на 100 км\n` +
+        `Трасса ${roadRate} л на 100 км\n\n` +
+        `Пропорции\n` +
+        `Городской режим ${Math.round(cityProp*100)}%\n` +
+        `Трассовый режим ${Math.round(roadProp*100)}%`;
 
-    const text = document.createElement('p'); 
-    text.innerText =
-        "BenzConfig Web App\n\n" +
-        "Лицензия: GNU GPL v3.0\n" +
-        "Материалы: www.flaticon.com\n" +
-        "Исходный код: github.com/benzenergy\n" +
-        "Автор: В.А. Чекаев"; 
-    text.className = 'modal-text'; 
-    container.appendChild(text); // Добавляем основной текст в контейнер
-
-    const subText = document.createElement('p'); 
-    subText.innerText = "PWA-версия для iOS"; 
-    subText.className = 'modal-subtext'; 
-    container.appendChild(subText); // Добавляем подзаголовок
-
-    const closeBtn = document.createElement('button'); 
-    closeBtn.innerText = "OK"; 
-    closeBtn.className = 'modal-close'; 
-    closeBtn.addEventListener('click', () => { 
-        document.body.removeChild(modal); 
-        // Закрытие модального окна по клику на кнопку
-    });
-    container.appendChild(closeBtn); // Добавляем кнопку закрытия в контейнер
-
-    modal.appendChild(container); // Добавляем контейнер с содержимым в фон модального окна
-    document.body.appendChild(modal); // Отображаем модальное окно на странице
-});
+    // Плавное появление результата
+    resultDiv.style.opacity = 0;
+    resultDiv.style.transition = 'opacity 0.5s';
+    setTimeout(() => { resultDiv.style.opacity = 1; }, 50);
+}
