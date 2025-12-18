@@ -1,123 +1,96 @@
-<!DOCTYPE html> <!-- Определяет тип документа как HTML5 -->
-<html lang="ru"> <!-- Начало документа HTML, язык страницы — русский -->
-<head> <!-- Начало блока метаданных и подключений -->
-    <meta charset="UTF-8"> <!-- Кодировка документа — UTF-8 -->
-    <title>BenzConfig</title> <!-- Название вкладки браузера -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>BenzConfig</title>
 
     <!-- Иконки -->
-    <link rel="icon" href="icon-256.ico"> <!-- Иконка сайта (favicon) для браузеров -->
-    <link rel="apple-touch-icon" href="icon-180.png"> <!-- Иконка для устройств Apple -->
+    <link rel="icon" href="icon-256.ico">
+    <link rel="apple-touch-icon" href="icon-180.png">
 
-    <!-- Viewport: блокировка масштабирования -->
-    <meta
-        name="viewport"
-        content="width=device-width,
-                 initial-scale=1.0,
-                 maximum-scale=1.0,
-                 user-scalable=no"> <!-- Настройки viewport для мобильных: ширина = ширине экрана, масштаб фиксирован -->
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- PWA -->
-    <link rel="manifest" href="manifest.json"> <!-- Подключение манифеста PWA (Progressive Web App) -->
+    <link rel="manifest" href="manifest.json">
 
     <!-- Стили -->
-    <link rel="stylesheet" href="style.css"> <!-- Подключение CSS для стилей страницы -->
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<body> <!-- Начало видимой части страницы -->
+<body>
 
-<!-- Заголовок с иконкой -->
-<div class="app-header"> <!-- Контейнер заголовка приложения -->
-    <img src="icon-180.png" alt="BenzConfig" class="app-icon"> <!-- Логотип/иконка приложения -->
+<!-- ===================== Splash Screen ===================== -->
+<div id="splash-screen">
+    <img src="icon-180.png" alt="BenzConfig" class="splash-icon">
+    <p class="splash-text">BenzConfig</p>
 </div>
 
-<!-- Летний расчёт -->
-<div class="block"> <!-- Блок с отступами для Летнего расчёта -->
-    <h3 class="summer-label">Летний</h3> <!-- Заголовок блока -->
-    <input
-        id="summerDistance"
-        type="number"
-        inputmode="decimal"
-        placeholder="Пробег, км"
-        autocomplete="off"
-    > <!-- Поле для ввода километража летом -->
-    <button onclick="calcSummer()">Рассчитать</button> <!-- Кнопка запуска расчёта летнего расхода -->
-    <div id="summerResult"></div> <!-- Контейнер для отображения результата -->
+<!-- ===================== Заголовок приложения ===================== -->
+<div class="app-header">
+    <img src="icon-180.png" alt="BenzConfig" class="app-icon">
 </div>
 
-<!-- Зимний расчёт -->
-<div class="block"> <!-- Блок для зимнего расчёта -->
-    <h3 class="winter-label">Зимний</h3> <!-- Заголовок блока -->
-    <input
-        id="winterDistance"
-        type="number"
-        inputmode="decimal"
-        placeholder="Пробег, км"
-        autocomplete="off"
-    > <!-- Поле для ввода километража зимой -->
-    <button onclick="calcWinter()">Рассчитать</button> <!-- Кнопка запуска расчёта зимнего расхода -->
-    <div id="winterResult"></div> <!-- Контейнер для отображения результата -->
+<!-- ===================== Летний блок ===================== -->
+<div class="block">
+    <h3 class="summer-label">Летний</h3>
+    <input id="summerDistance" type="number" inputmode="decimal" placeholder="Пробег, км" autocomplete="off">
+    <button onclick="calcSummer()">Рассчитать</button>
+    <div id="summerResult"></div>
 </div>
 
-<!-- Пропорции -->
-<div class="block"> <!-- Блок для настройки пропорций города и трассы -->
-    <h3>Настройки пропорций, %</h3> <!-- Заголовок блока -->
-    <div class="row"> <!-- Контейнер, где два input будут размещены горизонтально (flex) -->
-        <input
-            id="inputCityProp"
-            type="number"
-            inputmode="decimal"
-            placeholder="Город 30%"
-            autocomplete="off"
-        > <!-- Поле ввода доли города в % -->
-        <input
-            id="inputRoadProp"
-            type="number"
-            inputmode="decimal"
-            placeholder="Трасса 70%"
-            autocomplete="off"
-        > <!-- Поле ввода доли трассы в % -->
+<!-- ===================== Зимний блок ===================== -->
+<div class="block">
+    <h3 class="winter-label">Зимний</h3>
+    <input id="winterDistance" type="number" inputmode="decimal" placeholder="Пробег, км" autocomplete="off">
+    <button onclick="calcWinter()">Рассчитать</button>
+    <div id="winterResult"></div>
+</div>
+
+<!-- ===================== Пропорции ===================== -->
+<div class="block">
+    <h3>Настройки пропорций, %</h3>
+    <div class="row">
+        <input id="inputCityProp" type="number" inputmode="decimal" placeholder="Город 30%" autocomplete="off">
+        <input id="inputRoadProp" type="number" inputmode="decimal" placeholder="Трасса 70%" autocomplete="off">
     </div>
 </div>
 
-<!-- Нормы расхода -->
-<div class="block"> <!-- Блок для ввода норм расхода топлива -->
-    <h3>Нормы расхода, л/100 км</h3> <!-- Заголовок блока -->
-    <div class="row"> <!-- Контейнер для горизонтального размещения двух input -->
-        <input
-            id="inputCityRate"
-            type="number"
-            inputmode="decimal"
-            placeholder="Город"
-            autocomplete="off"
-        > <!-- Поле для нормы расхода по городу -->
-        <input
-            id="inputRoadRate"
-            type="number"
-            inputmode="decimal"
-            placeholder="Трасса"
-            autocomplete="off"
-        > <!-- Поле для нормы расхода по трассе -->
+<!-- ===================== Нормы расхода ===================== -->
+<div class="block">
+    <h3>Нормы расхода, л/100 км</h3>
+    <div class="row">
+        <input id="inputCityRate" type="number" inputmode="decimal" placeholder="Город" autocomplete="off">
+        <input id="inputRoadRate" type="number" inputmode="decimal" placeholder="Трасса" autocomplete="off">
     </div>
 </div>
 
-<!-- О программе -->
-<button id="btnAbout" class="info-button" aria-label="О программе">
-    О программе
-</button> <!-- Кнопка для вызова информации о программе -->
+<!-- ===================== О программе ===================== -->
+<button id="btnAbout" class="info-button" aria-label="О программе">О программе</button>
 
-<!-- Логика -->
-<script src="app.js"></script> <!-- Подключение скрипта с функциями расчёта -->
-
-<!-- Service Worker -->
+<!-- ===================== Скрипты ===================== -->
+<script src="app.js"></script>
 <script>
-if ('serviceWorker' in navigator) { <!-- Проверка поддержки service worker -->
-    window.addEventListener('load', () => { <!-- Ждём полной загрузки страницы -->
-        navigator.serviceWorker
-            .register('/service-worker.js') <!-- Регистрируем service worker -->
-            .then(() => console.log('Service Worker registered')) <!-- Лог успеха -->
-            .catch(err => console.log('SW error:', err)); <!-- Лог ошибки -->
+    // ===================== Service Worker =====================
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker
+                .register('/service-worker.js')
+                .then(() => console.log('Service Worker registered'))
+                .catch(err => console.log('SW error:', err));
+        });
+    }
+
+    // ===================== Анимация сплэш-скрина =====================
+    window.addEventListener('load', () => {
+        const splash = document.getElementById('splash-screen');
+        setTimeout(() => {
+            splash.style.opacity = 0; // Плавное исчезновение
+            splash.style.transform = 'scale(1.1)'; // Лёгкое увеличение
+            setTimeout(() => splash.style.display = 'none', 500); // Скрытие после анимации
+        }, 1000); // Показываем сплэш 1 секунду
     });
-}
 </script>
 
-</body> <!-- Конец видимой части страницы -->
-</html> <!-- Конец документа HTML -->
+</body>
+</html>
