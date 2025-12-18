@@ -93,7 +93,7 @@
 <script src="app.js"></script>
 
 <script>
-if ('serviceWorker' in navigator)
+if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
             .register('/service-worker.js')
@@ -112,5 +112,6 @@ if ('serviceWorker' in navigator)
 </script>
 </body>
 </html>
+
 
 
