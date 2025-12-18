@@ -69,8 +69,6 @@ function calcWinter() {
 }
 
 document.getElementById('btnAbout').addEventListener('click', function() { 
-    if (navigator.vibrate) navigator.vibrate(10);
-
     const modal = document.createElement('div');
     modal.className = 'modal-background';
 
@@ -122,3 +120,4 @@ window.addEventListener('load', () => {
         setTimeout(() => splash.style.display = 'none', 500);
     }, 700);
 });
+
