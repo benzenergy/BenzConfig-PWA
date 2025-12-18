@@ -19,5 +19,4 @@ GNU GPL v3.0  <br>
 Автор: В.А. Чекаев <br>
 Исходный код: [GitHub](https://github.com/benzenergy/BenzConfig-PWA/blob/main/index.html)
 
-[GPL](https://github.com/benzenergy/BenzConfig-PWA/blob/main/res/gplv3.png)
-/res/gplv3.png
+![GPL](https://github.com/benzenergy/BenzConfig-PWA/blob/main/res/gplv3.png)
