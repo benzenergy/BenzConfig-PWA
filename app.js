@@ -15,11 +15,18 @@ document.addEventListener('touchend', function (event) {
 }, false);
 
 function calcSummer() {    
-    const input = document.getElementById("summerDistance").value; 
-    if (!input || isNaN(input)) { 
-        document.getElementById("summerResult").innerText = "Введите значение пробега"; 
-        return; 
-    }
+if (!input || isNaN(input)) {
+    const field = document.getElementById("summerDistance"); // или winterDistance
+    field.classList.add('input-error');
+
+    setTimeout(() => {
+        field.classList.remove('input-error');
+    }, 1200);
+
+    document.getElementById("summerResult").innerText = "Введите значение пробега";
+    return;
+}
+
     const distance = Number(input);
     const cityRate = Number(document.getElementById("inputCityRate")?.value) || 11.5;
     const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 8.5;
@@ -162,5 +169,6 @@ window.addEventListener('DOMContentLoaded', () => {
     loadSavedValues();
     setupAutosave();
 });
+
 
 
