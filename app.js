@@ -120,3 +120,59 @@ window.addEventListener('load', () => {
         setTimeout(() => splash.style.display = 'none', 500);
     }, 700);
 });
+
+/* =========================
+   EASTER EGG (5 taps)
+========================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const icon = document.querySelector('.app-icon');
+    if (!icon) return;
+
+    let tapCount = 0;
+    let tapTimer = null;
+
+    icon.addEventListener('click', () => {
+        tapCount++;
+
+        // сброс таймера
+        clearTimeout(tapTimer);
+        tapTimer = setTimeout(() => {
+            tapCount = 0;
+        }, 3000);
+
+        if (tapCount === 5) {
+            tapCount = 0;
+            showEasterEgg();
+        }
+    });
+});
+
+function showEasterEgg() {
+    const modal = document.createElement('div');
+    modal.className = 'modal-background';
+
+    const container = document.createElement('div');
+    container.className = 'modal-container';
+
+    const text = document.createElement('p');
+    text.className = 'modal-text';
+    text.innerText =
+        "🐣 Пасхалка\n\n" +
+        "BenzConfig\n" +
+        "Версия: 1.5.0\n\n" +
+        "Ты нашёл скрытое меню 🙂";
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'modal-close';
+    closeBtn.innerText = 'OK';
+
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+
+    container.appendChild(text);
+    container.appendChild(closeBtn);
+    modal.appendChild(container);
+    document.body.appendChild(modal);
+}
