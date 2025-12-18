@@ -167,3 +167,11 @@ button:active {
 .splash-text {
     font-size: 16px; font-weight: regular; color: #c4c4c4;
 }
+/* =========================
+   INPUT ERROR STATE
+========================= */
+
+.input-error {
+    border-color: #ff3b30 !important;
+    box-shadow: 0 0 0 2px rgba(255, 59, 48, 0.25);
+}
