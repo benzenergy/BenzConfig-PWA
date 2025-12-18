@@ -89,14 +89,16 @@
 <button id="btnAbout" class="info-button" aria-label="О программе">
     О программе
 </button>
+
 <script src="app.js"></script>
+
 <script>
-if ('serviceWorker' in navigator) { <!-- Проверка поддержки service worker -->
-    window.addEventListener('load', () => { <!-- Ждём полной загрузки страницы -->
+if ('serviceWorker' in navigator)
+    window.addEventListener('load', () =>
         navigator.serviceWorker
-            .register('/service-worker.js') <!-- Регистрируем service worker -->
-            .then(() => console.log('Service Worker registered')) <!-- Лог успеха -->
-            .catch(err => console.log('SW error:', err)); <!-- Лог ошибки -->
+            .register('/service-worker.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(err => console.log('SW error:', err));
     });
 }
     window.addEventListener('load', () => {
@@ -110,3 +112,4 @@ if ('serviceWorker' in navigator) { <!-- Проверка поддержки ser
 </script>
 </body>
 </html>
+
