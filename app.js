@@ -17,6 +17,14 @@ document.addEventListener('touchend', function (event) {
 }, false);
 
 function calcSummer() {
+
+    const resultDiv = document.getElementById("summerResult");
+    resultDiv.style.opacity = 0;
+    resultDiv.innerText = `...`;
+    resultDiv.style.transition = "opacity 0.5s";
+    setTimeout(() => resultDiv.style.opacity = 1, 50);
+
+    
     const input = document.getElementById("summerDistance").value; 
     if (!input || isNaN(input)) { 
         document.getElementById("summerResult").innerText = "Введите значение пробега"; 
@@ -103,3 +111,4 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
+
