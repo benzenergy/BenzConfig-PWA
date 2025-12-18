@@ -1,3 +1,4 @@
+// ===================== Основные функции расчета =====================
 function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 0.7) {
     const cityDistance = distance * cityProp;
     const roadDistance = distance * roadProp;
@@ -7,15 +8,15 @@ function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 
     return { totalFuel, cityDistance, roadDistance, cityFuel, roadFuel }; 
 }
 
+// ===================== Анти-даблтап =====================
 let lastTouchEnd = 0;
 document.addEventListener('touchend', function (event) {
     const now = Date.now();
-    if (now - lastTouchEnd <= 300) {
-        event.preventDefault();
-    }
+    if (now - lastTouchEnd <= 300) event.preventDefault();
     lastTouchEnd = now;
 }, false);
 
+// ===================== Функции расчета =====================
 function calcSummer() {    
     const input = document.getElementById("summerDistance").value; 
     if (!input || isNaN(input)) { 
@@ -27,6 +28,7 @@ function calcSummer() {
     const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 8.5;
     const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3;
     const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7;
+
     const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
     document.getElementById("summerResult").innerText =
@@ -53,6 +55,7 @@ function calcWinter() {
     const roadRate = Number(document.getElementById("inputRoadRate")?.value) || 10.2; 
     const cityProp = Number(document.getElementById("inputCityProp")?.value) / 100 || 0.3; 
     const roadProp = Number(document.getElementById("inputRoadProp")?.value) / 100 || 0.7; 
+
     const { totalFuel, cityDistance, roadDistance } = calculateFuel(distance, cityRate, roadRate, cityProp, roadProp);
 
     document.getElementById("winterResult").innerText =
@@ -68,18 +71,21 @@ function calcWinter() {
         `Трассовый режим ${Math.round(roadProp*100)}%`;
 }
 
+// ===================== Модальное окно "О программе" =====================
 document.getElementById('btnAbout').addEventListener('click', function() { 
-    if (navigator.vibrate) { 
-        navigator.vibrate(10);
-    }
+    if (navigator.vibrate) navigator.vibrate(10);
+
     const modal = document.createElement('div');
     modal.className = 'modal-background';
+
     const container = document.createElement('div');
     container.className = 'modal-container';
+
     const img = document.createElement('img');
     img.src = 'assets/icon-180.png';
     img.className = 'modal-icon';
     container.appendChild(img);
+
     const text = document.createElement('p');
     text.innerText =
         "BenzConfig Web App\n\n" +
@@ -89,19 +95,37 @@ document.getElementById('btnAbout').addEventListener('click', function() {
         "Автор: В.А. Чекаев";
     text.className = 'modal-text';
     container.appendChild(text);
+
     const subText = document.createElement('p');
     subText.innerText = "PWA-версия для iOS";
     subText.className = 'modal-subtext';
     container.appendChild(subText);
+
     const closeBtn = document.createElement('button');
     closeBtn.innerText = "OK";
     closeBtn.className = 'modal-close';
-    closeBtn.addEventListener('click', () => {
-        document.body.removeChild(modal);
-    });
+    closeBtn.addEventListener('click', () => document.body.removeChild(modal));
     container.appendChild(closeBtn);
+
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
 
+// ===================== Сплэш-скрин и Service Worker =====================
+window.addEventListener('load', () => {
+    // Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(err => console.warn('SW error:', err));
+    }
 
+    // Сплэш-скрин
+    const splash = document.getElementById('splash-screen');
+    setTimeout(() => {
+        splash.style.opacity = 0;
+        splash.style.transform = 'scale(1.2)';
+        setTimeout(() => splash.style.display = 'none', 500);
+    }, 700);
+});
