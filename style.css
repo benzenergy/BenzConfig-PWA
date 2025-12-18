@@ -8,6 +8,7 @@ body {
 
 html, body {
     touch-action: manipulation;
+    overscroll-behavior: none;
 }
 
 .block {
@@ -132,4 +133,8 @@ button:active {
 .app-icon {
     width: 64px;   /* менять: 64 / 72 / 80 */
     height: 64px;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
 }
