@@ -7,6 +7,61 @@ function calculateFuel(distance, cityRate, roadRate, cityProp = 0.3, roadProp = 
     return { totalFuel, cityDistance, roadDistance, cityFuel, roadFuel }; 
 }
 
+/* =========================
+   EASTER EGG
+========================= */
+
+let tapCount = 0;
+let tapTimer = null;
+
+const appIcon = document.querySelector('.app-icon');
+
+if (appIcon) {
+    appIcon.addEventListener('click', () => {
+        tapCount++;
+
+        clearTimeout(tapTimer);
+        tapTimer = setTimeout(() => {
+            tapCount = 0;
+        }, 1000);
+
+        if (tapCount === 3) {
+            tapCount = 0;
+            showEasterEgg();
+        }
+    });
+}
+
+function showEasterEgg() {
+    const modal = document.createElement('div');
+    modal.className = 'modal-background';
+
+    const container = document.createElement('div');
+    container.className = 'modal-container';
+
+    const text = document.createElement('p');
+    text.className = 'modal-text';
+    text.innerText =
+        "🐣 Пасхалка\n\n" +
+        "BenzConfig\n" +
+        "Версия: 1.5.0\n" +
+        "PWA Web App\n\n" +
+        "Ты нашёл скрытое меню 🙂";
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'modal-close';
+    closeBtn.innerText = 'OK';
+
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+
+    container.appendChild(text);
+    container.appendChild(closeBtn);
+    modal.appendChild(container);
+    document.body.appendChild(modal);
+}
+
 let lastTouchEnd = 0;
 document.addEventListener('touchend', function (event) {
     const now = Date.now();
@@ -169,6 +224,7 @@ window.addEventListener('DOMContentLoaded', () => {
     loadSavedValues();
     setupAutosave();
 });
+
 
 
 
