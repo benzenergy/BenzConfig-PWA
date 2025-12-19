@@ -155,3 +155,8 @@ button:active {
 .splash-text {
     font-size: 16px; font-weight: regular; color: #c4c4c4;
 }
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
+}
