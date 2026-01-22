@@ -86,7 +86,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
         "Лицензия: GNU GPL v3.0\n" +
         "Материалы: www.flaticon.com\n" +
         "Исходник: github.com/benzenergy\n" +
-        "2026 © benzenergy";
+        "© 2025 benzenergy";
     text.className = 'modal-text';
     container.appendChild(text);
 
@@ -104,5 +104,6 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
+
 
 
