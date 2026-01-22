@@ -2,7 +2,7 @@ BenzConfig PWA
 Простой калькулятор расхода топлива <br> 
 для **летнего** и **зимнего** режимов, <br> 
 
-Попробовать [BCPWA](https://benzenergy.github.io/BenzConfig-PWA)
+Попробовать [BenzConfig](https://benzenergy.github.io/BenzConfig-PWA)
 
 ---
 
