@@ -85,7 +85,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
         "BenzConfig Web App\n\n" +
         "Лицензия: GNU GPL v3.0\n" +
         "Материалы: www.flaticon.com\n" +
-        "Исходный код: github.com/benzenergy\n" +
+        "Исходник: github.com/benzenergy\n" +
         "2026 © benzenergy";
     text.className = 'modal-text';
     container.appendChild(text);
@@ -104,4 +104,5 @@ document.getElementById('btnAbout').addEventListener('click', function() {
     modal.appendChild(container);
     document.body.appendChild(modal);
 });
+
 
