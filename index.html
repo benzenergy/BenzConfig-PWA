@@ -3,35 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>BenzConfig</title>
-
     <link rel="icon" href="assets/icon-256.ico">
     <link rel="apple-touch-icon" href="assets/icon-180.png">
-
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
 <div id="splash-screen">
     <img src="assets/icon-180.png" alt="BenzConfig" class="splash-icon">
     <p class="splash-text">BenzConfig</p>
 </div>
-
 <div class="app-header">
     <img src="assets/icon-180.png" alt="BenzConfig" class="app-icon">
 </div>
-
 <div class="block">
     <h3 class="summer-label">Летний</h3>
     <input id="summerDistance" type="number" inputmode="decimal" placeholder="Пробег, км">
     <button onclick="calcSummer()">Рассчитать</button>
     <div id="summerResult"></div>
 </div>
-
 <div class="block">
     <h3 class="winter-label">Зимний</h3>
     <input id="winterDistance" type="number" inputmode="decimal" placeholder="Пробег, км">
@@ -46,7 +39,6 @@
         <input id="inputRoadProp" type="number" placeholder="Трасса 70%">
     </div>
 </div>
-
 <div class="block">
     <h3>Нормы расхода, л/100 км</h3>
     <div class="row">
@@ -54,20 +46,16 @@
         <input id="inputRoadRate" type="number" placeholder="Трасса">
     </div>
 </div>
-
 <button id="btnAbout" class="info-button">О программе</button>
-
 <script src="app.js" defer></script>
-
 <script>
 window.addEventListener('load', () => {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
-            .register('service-worker.js')  // ВАЖНО: относительный путь
+            .register('service-worker.js')
             .then(() => console.log('Service Worker registered'))
             .catch(err => console.warn('SW error:', err));
     }
-
     const splash = document.getElementById('splash-screen');
     setTimeout(() => {
         splash.style.opacity = 0;
@@ -76,6 +64,5 @@ window.addEventListener('load', () => {
     }, 700);
 });
 </script>
-
 </body>
 </html>
