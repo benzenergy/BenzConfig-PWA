@@ -1,7 +1,6 @@
 BenzConfig PWA <br>
 ---
-Простой калькулятор расхода топлива <br> 
-для **летнего** и **зимнего** режимов, <br> 
+Приложение для расчёта расхода топлива <br> 
 Попробовать [BenzConfig](https://benzenergy.github.io/BenzConfig-PWA) <br>
 
 Лицензия
