@@ -1,6 +1,6 @@
 BenzConfig PWA <br>
 ---
-Веб-приложение для расчёта расхода топлива
+Веб-приложение для расчёта расхода топлива <br>
 Попробовать [BenzConfig](https://benzenergy.github.io/BenzConfig-PWA)
 
 Лицензия
