@@ -8,6 +8,5 @@
 
 # Лицензия <br>
 GNU GPL v3.0  <br>
-© 2025 benzenergy <br>
-<br>
+
 ![GPL](https://github.com/benzenergy/BenzConfig-PWA/blob/main/res/gplv3.png)
