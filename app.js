@@ -324,7 +324,7 @@ document.getElementById('btnAbout').addEventListener('click', function() {
 
     // Исходник
     const source = document.createElement('div');
-    source.innerHTML = 'Исходник: <a href="https://github.com/benzenergy/BenzConfig-PWA" target="_blank">github.com/benzenergy</a>';
+    source.innerHTML = 'Исходник: <a href="https://github.com/benzenergy/BenzConfig-PWA" target="_blank">github.com</a>';
     source.className = 'about-text';
     rightBlock.appendChild(source);
 
