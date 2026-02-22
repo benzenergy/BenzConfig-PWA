@@ -1,4 +1,4 @@
-[![Скачать в RuStore](https://img.shields.io/badge/Установить-для_IPhone-yellow)](https://benzenergy.github.io/BenzConfig-iOS/) <br>
+[![GitHub Page](https://img.shields.io/badge/Установить-для_IPhone-yellow)](https://benzenergy.github.io/BenzConfig-iOS/) <br>
 
 ##
 
