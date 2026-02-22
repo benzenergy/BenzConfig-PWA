@@ -1,3 +1,5 @@
+[![Скачать в RuStore](https://img.shields.io/badge/GitHub-Pages-yellow)](https://benzenergy.github.io/BenzConfig-iOS/) 
+
 BenzConfig PWA <br>
 Веб-приложение для расчёта расхода топлива <br>
 [Попробовать](https://benzenergy.github.io/BenzConfig-iOS/)
